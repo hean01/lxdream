@@ -4,6 +4,7 @@
  * gendec action file parser. 
  *
  * Copyright (c) 2005 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <sys/stat.h>
 #include <glib.h>
