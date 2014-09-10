@@ -4,6 +4,7 @@
  * Implements the core Maple bus, including DMA transfers to and from the bus.
  *
  * Copyright (c) 2005 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ maple_device_class_t maple_get_device_class( const gchar *name )
 {
     int i;
     for( i=0; maple_device_classes[i] != NULL; i++ ) {
-        if( g_strcasecmp(maple_device_classes[i]->name, name ) == 0 )
+        if( g_ascii_strcasecmp(maple_device_classes[i]->name, name ) == 0 )
             return maple_device_classes[i];
     }
     return NULL;

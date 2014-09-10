@@ -4,6 +4,7 @@
  * User configuration support
  *
  * Copyright (c) 2005 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -370,7 +371,7 @@ gboolean lxdream_load_config_stream( FILE *f )
                 g_strstrip(buf);
                 g_strstrip(value);
                 if( top_group == &controllers_group ) {
-                    if( g_strncasecmp( buf, "device ", 7 ) == 0 ) {
+                    if( g_ascii_strncasecmp( buf, "device ", 7 ) == 0 ) {
                         maple_device = strtoul( buf+7, NULL, 0 );
                         if( maple_device < 0 || maple_device > 3 ) {
                             ERROR( "Device number must be between 0..3 (not '%s')", buf+7);
@@ -385,7 +386,7 @@ gboolean lxdream_load_config_stream( FILE *f )
                             maple_attach_device( device, maple_device, maple_subdevice );
                         }
                         continue;
-                    } else if( g_strncasecmp( buf, "subdevice ", 10 ) == 0 ) {
+                    } else if( g_ascii_strncasecmp( buf, "subdevice ", 10 ) == 0 ) {
                         maple_subdevice = strtoul( buf+10, NULL, 0 );
                         if( maple_device == -1 ) {
                             ERROR( "Subdevice not allowed without primary device" );
