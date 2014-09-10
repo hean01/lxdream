@@ -4,6 +4,7 @@
  * genmmio I/O register definition parser.
  *
  * Copyright (c) 2010 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +157,7 @@ static inline int yystrcasecmp(const char *cmp)
     if( len != yytok.yylength ) {
         return yytok.yylength - len;
     }
-    return strncasecmp(yytok.yytext, cmp, yytok.yylength);
+    return g_ascii_strncasecmp(yytok.yytext, cmp, yytok.yylength);
 }
 
 static int yymatch( const char *arr[], unsigned numOptions )
@@ -514,7 +515,7 @@ static int iolex_open( const char *filename )
     yystate.yyend = data + st.st_size;
     yystate.yylineno = 1;
     yystate.yylineposn = yystate.yyposn;
-    yystate.yyfilename = strdup(filename);
+    yystate.yyfilename = g_strdup(filename);
     return 0;
 }
 
@@ -651,7 +652,7 @@ int iolex( int expectToken )
             /* Otherwise check for keywords */
             for( int i=FIRST_KEYWORD; i <= LAST_KEYWORD; i++ ) {
                 if( strlen(TOKEN_NAMES[i]) == yytok.yylength &&
-                    strncasecmp(TOKEN_NAMES[i], yystart, yytok.yylength ) == 0 ) {
+                    g_ascii_strncasecmp(TOKEN_NAMES[i], yystart, yytok.yylength ) == 0 ) {
                     YYRETURN(i);
                 }
             }
