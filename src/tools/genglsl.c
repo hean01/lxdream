@@ -28,6 +28,7 @@
 #include <string.h>
 #include <getopt.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include "../../config.h"
 
 #define MAX_LINE 4096
@@ -149,7 +150,7 @@ static GList *temp_filenames = NULL;
 static void cleanup_tempfiles(void)
 {
    while( temp_filenames != NULL ) {
-       unlink( (char *)temp_filenames->data );
+       g_unlink( (char *)temp_filenames->data );
        g_free(temp_filenames->data);
        temp_filenames = temp_filenames->next;
    }
@@ -161,7 +162,7 @@ static void cleanup_tempfiles(void)
 static FILE *preprocessInput( const char *filename, GList *cpp_opts )
 {
     char tmpname[] = "/tmp/genglsl.XXXXXXXX";
-    int fd = mkstemp(tmpname);
+    int fd = g_mkstemp(tmpname);
     if( fd == -1 ) {
         fprintf( stderr, "Error: unable to get a temporary filename (%s)\n", strerror(errno) );
         exit(2);
@@ -230,7 +231,7 @@ static void readInput( const char *filename, GList *cpp_opts, glsldata_t result 
                 shader = g_malloc0(sizeof(struct shader));
                 assert( shader != NULL );
                 shader->type = VERTEX_SHADER;
-                shader->name = strdup(g_strstrip(p+7));
+                shader->name = g_strdup(g_strstrip(p+7));
                 shader->body = malloc(DEF_ALLOC_SIZE);
                 shader->body[0] = '\0';
                 current_size = DEF_ALLOC_SIZE;
@@ -240,7 +241,7 @@ static void readInput( const char *filename, GList *cpp_opts, glsldata_t result 
                 shader = g_malloc0(sizeof(struct shader));
                 assert( shader != NULL );
                 shader->type = FRAGMENT_SHADER;
-                shader->name = strdup(g_strstrip(p+9));
+                shader->name = g_strdup(g_strstrip(p+9));
                 shader->body = malloc(DEF_ALLOC_SIZE);
                 shader->body[0] = '\0';
                 current_size = DEF_ALLOC_SIZE;
