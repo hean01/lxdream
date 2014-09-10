@@ -1,5 +1,7 @@
 .gitignore
+autom4te.cache/
 *~
+*.a
 *.o
 *.gmo
 *.so
