@@ -5,6 +5,7 @@
  * whole procedure of manually making a CD image for them.
  *
  * Copyright (c) 2005 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,7 +149,7 @@ lxdream_file_type_t file_load_magic( const gchar *filename, gboolean wrap_exec, 
     if( disc != NULL ) {
         gdrom_mount_disc(disc);
         return FILE_DISC;
-    } else if( err != LX_ERR_FILE_UNKNOWN ) {
+    } else if( err->code != LX_ERR_FILE_UNKNOWN ) {
         return FILE_ERROR;
     }
 
