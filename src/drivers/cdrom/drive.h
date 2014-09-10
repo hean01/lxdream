@@ -11,6 +11,7 @@
  * no media present).
  *
  * Copyright (c) 2009 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,6 +90,11 @@ cdrom_drive_t cdrom_drive_find( const char *name );
  * @return NULL on failure, otherwise a valid cdrom_disc_t that can be mounted.
  */
 cdrom_disc_t cdrom_drive_open( cdrom_drive_t drive, ERROR *err );
+
+/**
+ *
+ */
+void cdrom_drive_scan( void );
 
 #ifdef __cplusplus
 }
