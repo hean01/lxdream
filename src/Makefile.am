@@ -19,7 +19,7 @@ check_PROGRAMS = test/testxlt test/testlxpaths
 
 pkglib_PROGRAMS=
 EXTRA_DIST=drivers/genkeymap.pl checkver.pl drivers/dummy.c
-AM_CFLAGS = -D__EXTENSIONS__ -D_BSD_SOURCE -D_GNU_SOURCE
+AM_CFLAGS = -D__EXTENSIONS__ -D_BSD_SOURCE -D_GNU_SOURCE -D_POSIX_C_SOURCE=1
 
 .PHONY: checkversion
 checkversion:
