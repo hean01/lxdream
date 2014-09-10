@@ -4,6 +4,7 @@
  * "Fake" BIOS functions, for operation without the actual BIOS.
  *
  * Copyright (c) 2005-2010 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 #include "drivers/cdrom/cdrom.h"
 #include "drivers/cdrom/isofs.h"
 #include "gdrom/gdrom.h"
+#include "arpa/inet.h"
 
 gboolean bios_boot_gdrom_disc( void );
 
