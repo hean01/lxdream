@@ -1,9 +1,10 @@
 /**
  * $Id$
  *
- * GL-based support functions 
+ * GL-based support functions
  *
  * Copyright (c) 2005 Nathan Keynes.
+ * Copyright (c) 2014 Henrik Andersson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -192,7 +193,7 @@ void fprint_extensions( FILE *out, const char *extensions )
         return;
 
     gchar *ext_dup = g_strdup(extensions);
-    gchar **ext_split = g_strsplit(g_strstrip(extensions), " ", 0);
+    gchar **ext_split = g_strsplit(g_strstrip(ext_dup), " ", 0);
     for( count = 0; ext_split[count] != NULL; count++ ) {
         unsigned len = strlen(ext_split[count]);
         if( len > maxlen )
